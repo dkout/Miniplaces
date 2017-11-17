@@ -7,7 +7,7 @@ from DataLoader import *
 # Dataset Parameters
 batch_size = 64
 load_size = 64
-fine_size = 64
+fine_size = 224
 c = 3
 data_mean = np.asarray([0.45834960097,0.44674252445,0.41352266842])
 
