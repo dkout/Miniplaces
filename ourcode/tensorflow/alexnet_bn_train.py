@@ -1,6 +1,7 @@
 import os, datetime
 import numpy as np
 import tensorflow as tf
+import sys
 from tensorflow.contrib.layers.python.layers import batch_norm
 from DataLoader import *
 
@@ -173,6 +174,7 @@ with tf.Session() as sess:
                   "{:.6f}".format(l) + ", Accuracy Top1 = " + \
                   "{:.4f}".format(acc1) + ", Top5 = " + \
                   "{:.4f}".format(acc5))
+            sys.stdout.flush()
         
         # Run optimization op (backprop)
         sess.run(train_optimizer, feed_dict={x: images_batch, y: labels_batch, keep_dropout: dropout, train_phase: True})
@@ -183,7 +185,7 @@ with tf.Session() as sess:
         if step % step_save == 0:
             saver.save(sess, path_save, global_step=step)
             print("Model saved at Iter %d !" %(step))
-        
+            sys.stdout.flush()
     print("Optimization Finished!")
 
 
@@ -201,7 +203,12 @@ with tf.Session() as sess:
         print("Validation Accuracy Top1 = " + \
               "{:.4f}".format(acc1) + ", Top5 = " + \
               "{:.4f}".format(acc5))
+        sys.stdout.flush()
 
     acc1_total /= num_batch
     acc5_total /= num_batch
     print('Evaluation Finished! Accuracy Top1 = ' + "{:.4f}".format(acc1_total) + ", Top5 = " + "{:.4f}".format(acc5_total))
+
+    sys.stdout.flush()
+
+    
