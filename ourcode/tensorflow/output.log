@@ -1,0 +1,14 @@
+# Images found: 100000
+# Images found: 10000
+[2017-11-18 06:41:26]:
+-Iter 0, Training Loss= 5.026329, Accuracy Top1 = 0.0333, Top5 = 0.0333
+-Iter 0, Validation Loss= 5.008564, Accuracy Top1 = 0.0167, Top5 = 0.1000
+[2017-11-18 06:42:04]:
+-Iter 50, Training Loss= 5.410028, Accuracy Top1 = 0.0333, Top5 = 0.1167
+-Iter 50, Validation Loss= 5.073881, Accuracy Top1 = 0.0500, Top5 = 0.1667
+[2017-11-18 06:42:36]:
+-Iter 100, Training Loss= 5.132812, Accuracy Top1 = 0.0167, Top5 = 0.1000
+-Iter 100, Validation Loss= 4.462524, Accuracy Top1 = 0.0833, Top5 = 0.2333
+[2017-11-18 06:43:09]:
+-Iter 150, Training Loss= 5.050716, Accuracy Top1 = 0.0833, Top5 = 0.3167
+-Iter 150, Validation Loss= 4.625198, Accuracy Top1 = 0.1167, Top5 = 0.2167

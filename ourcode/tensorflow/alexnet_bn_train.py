@@ -2,23 +2,25 @@ import os, datetime
 import numpy as np
 import tensorflow as tf
 import sys
+import datetime
 from tensorflow.contrib.layers.python.layers import batch_norm
 from DataLoader import *
 
 # Dataset Parameters
-batch_size = 32
+batch_size = 60
 load_size = 256 
 fine_size = 224
 c = 3
 data_mean = np.asarray([0.45834960097,0.44674252445,0.41352266842])
 
 # Training Parameters
-learning_rate = 0.0001
+learning_rate = 0.0005
 dropout = 0.5 # Dropout, probability to keep units
-training_iters = 50000
+training_iters = 40000
 step_display = 50
-step_save = 10000
+step_save = 5000
 path_save = 'alexnet_bn'
+endtime = datetime.datetime(2017, 11,18,15,0)
 start_from = ''
 
 def batch_norm_layer(x, train_phase, scope_bn):
@@ -153,7 +155,7 @@ with tf.Session() as sess:
     
     step = 0
 
-    while step < training_iters:
+    while datetime.datetime.now() < endtime:
         # Load a batch of training data
         images_batch, labels_batch = loader_train.next_batch(batch_size)
         
