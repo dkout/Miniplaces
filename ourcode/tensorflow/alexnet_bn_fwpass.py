@@ -6,6 +6,8 @@ import datetime
 from tensorflow.contrib.layers.python.layers import batch_norm
 from TrainDataLoader import *
 
+#Restore parameters
+restore_path = "1strun_kout/alexnet_bn-30000"
 # Dataset Parameters
 batch_size = 1
 load_size = 256 
@@ -152,7 +154,7 @@ probabilities = tf.nn.softmax(logits)
 with tf.Session() as sess:
     # Initialization
     saver=tf.train.Saver()
-    saver.restore(sess,'alexnet_bn-90000') 
+    saver.restore(sess,restore_path) 
     # Evaluate on the whole validation set
     print('Test on the whole test set...')
     num_batch = loader_test.size()//batch_size
