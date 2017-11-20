@@ -132,7 +132,7 @@ loader_test = DataLoaderDisk(**opt_data_test)
 
 # tf Graph input
 x = tf.placeholder(tf.float32, [None, fine_size, fine_size, c])
-y = tf.placeholder(tf.int64, None)
+#y = tf.placeholder(tf.int64, None)
 keep_dropout = tf.placeholder(tf.float32)
 train_phase = tf.placeholder(tf.bool)
 
@@ -140,7 +140,7 @@ train_phase = tf.placeholder(tf.bool)
 logits = alexnet(x, keep_dropout, train_phase)
 
 # Define loss and optimizer
-loss = tf.reduce_mean(tf.nn.sparse_softmax_cross_entropy_with_logits(labels=y, logits=logits))
+#loss = tf.reduce_mean(tf.nn.sparse_softmax_cross_entropy_with_logits(labels=y, logits=logits))
 
 # define summary writer
 #writer = tf.train.SummaryWriter('.', graph=tf.get_default_graph())
@@ -148,7 +148,8 @@ loss = tf.reduce_mean(tf.nn.sparse_softmax_cross_entropy_with_logits(labels=y, l
 # Launch the graph
 with tf.Session() as sess:
     # Initialization
-    saver.restore(sess, 'alexnet_bn-90000.data-00000-of-00001')
+    saver=tf.train.Saver()
+    saver.restore(sess,'alexnet_bn-90000') 
     # Evaluate on the whole validation set
     print('Test on the whole test set...')
     num_batch = loader_test.size()//batch_size
@@ -157,7 +158,7 @@ with tf.Session() as sess:
     loader_test.reset()
     for i in range(num_batch):
         images_batch = loader_test.next_batch(batch_size)    
-        output = sess.run(logits, feed_dict={x: images_batch, train_phase: False})
+        output = sess.run(logits, feed_dict={x: images_batch, train_phase: False, keep_dropout: 1.})#, dropout: 1.})
         print("Output")
         print(output)
         sys.stdout.flush()
