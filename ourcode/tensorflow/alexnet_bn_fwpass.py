@@ -7,7 +7,7 @@ from tensorflow.contrib.layers.python.layers import batch_norm
 from TrainDataLoader import *
 
 # Dataset Parameters
-batch_size = 60
+batch_size = 1
 load_size = 256 
 fine_size = 224
 c = 3
@@ -148,7 +148,6 @@ probabilities = tf.nn.softmax(logits)
 #writer = tf.train.SummaryWriter('.', graph=tf.get_default_graph())
 
 # Launch the graph
-outputfile = open('classifications.txt', 'w')
 
 with tf.Session() as sess:
     # Initialization
@@ -161,15 +160,15 @@ with tf.Session() as sess:
     acc5_total = 0.
     loader_test.reset()
     for i in range(num_batch):
-        images_batch = loader_test.next_batch(batch_size)    
+        images_batch, name_batch = loader_test.next_batch(batch_size)    
         output = sess.run(probabilities, feed_dict={x: images_batch, train_phase: False, keep_dropout: 1.})#, dropout: 1.})
         output = output[0, 0:]
         sorted_inds = [i[0] for i in sorted(enumerate(-output), key=lambda x:x[1])]
-        outputfile.write( "Image scene: ")
-        for i in range(5):
-            index = sorted_inds[i]
-            outputfile.write(str(index) + ' ')
-        outputfile.write("\n")
+        print( name_batch[:], end='')
+        for j in range(5):
+            index = sorted_inds[j]
+            print(str(index) + ' ', end='')
+        print("")
         sys.stdout.flush()
 
         print('***END***')
