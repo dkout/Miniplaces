@@ -164,14 +164,14 @@ with tf.Session() as sess:
         output = sess.run(probabilities, feed_dict={x: images_batch, train_phase: False, keep_dropout: 1.})#, dropout: 1.})
         output = output[0, 0:]
         sorted_inds = [i[0] for i in sorted(enumerate(-output), key=lambda x:x[1])]
-        print( name_batch[:], end='')
+        print( str(name_batch[:]) + " ", end='')
         for j in range(5):
             index = sorted_inds[j]
             print(str(index) + ' ', end='')
         print("")
         sys.stdout.flush()
 
-        print('***END***')
+    print('***END***')
 
     sys.stdout.flush()
 
