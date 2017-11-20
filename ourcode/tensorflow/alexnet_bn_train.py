@@ -4,7 +4,7 @@ import tensorflow as tf
 import sys
 import datetime
 from tensorflow.contrib.layers.python.layers import batch_norm
-from DataLoader import *
+from DataLoaderAug import *
 
 # Dataset Parameters
 batch_size = 60
