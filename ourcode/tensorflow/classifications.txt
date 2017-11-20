@@ -1,0 +1,10 @@
+Image scene: 84 31 68 82 97 
+Image scene: 1 48 33 34 13 
+Image scene: 73 50 82 83 31 
+Image scene: 37 45 25 14 20 
+Image scene: 0 32 5 71 67 
+Image scene: 58 26 33 6 28 
+Image scene: 53 72 27 52 79 
+Image scene: 23 66 8 64 88 
+Image scene: 79 85 52 24 0 
+Image scene: 96 77 86 29 80 

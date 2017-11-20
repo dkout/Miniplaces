@@ -139,6 +139,8 @@ train_phase = tf.placeholder(tf.bool)
 # Construct model
 logits = alexnet(x, keep_dropout, train_phase)
 
+probabilities = tf.nn.softmax(logits)
+
 # Define loss and optimizer
 #loss = tf.reduce_mean(tf.nn.sparse_softmax_cross_entropy_with_logits(labels=y, logits=logits))
 
@@ -146,6 +148,8 @@ logits = alexnet(x, keep_dropout, train_phase)
 #writer = tf.train.SummaryWriter('.', graph=tf.get_default_graph())
 
 # Launch the graph
+outputfile = open('classifications.txt', 'w')
+
 with tf.Session() as sess:
     # Initialization
     saver=tf.train.Saver()
@@ -158,12 +162,17 @@ with tf.Session() as sess:
     loader_test.reset()
     for i in range(num_batch):
         images_batch = loader_test.next_batch(batch_size)    
-        output = sess.run(logits, feed_dict={x: images_batch, train_phase: False, keep_dropout: 1.})#, dropout: 1.})
-        print("Output")
-        print(output)
+        output = sess.run(probabilities, feed_dict={x: images_batch, train_phase: False, keep_dropout: 1.})#, dropout: 1.})
+        output = output[0, 0:]
+        sorted_inds = [i[0] for i in sorted(enumerate(-output), key=lambda x:x[1])]
+        outputfile.write( "Image scene: ")
+        for i in range(5):
+            index = sorted_inds[i]
+            outputfile.write(str(index) + ' ')
+        outputfile.write("\n")
         sys.stdout.flush()
 
-    print('***END***')
+        print('***END***')
 
     sys.stdout.flush()
 
