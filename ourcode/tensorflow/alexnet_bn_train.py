@@ -7,24 +7,24 @@ from tensorflow.contrib.layers.python.layers import batch_norm
 from DataLoaderAug import *
 
 # Dataset Parameters
-batch_size = 60
+batch_size = 75
 load_size = 256 
 fine_size = 224
 c = 3
 data_mean = np.asarray([0.45834960097,0.44674252445,0.41352266842])
 
 # Training Parameters
-learning_rate = 0.0005
-dropout = 0.5 # Dropout, probability to keep units
+learning_rate = 0.005
+dropout = 0.3 # Dropout, probability to keep units
 training_iters = 50000
-step_display = 50
-step_save = 5000
+step_display = 100
+step_save = 10000
 path_save = './alexnet_bn'
-endtime = datetime.datetime.now()+datetime.timedelta(hours=17)
+endtime = datetime.datetime.now()+datetime.timedelta(hours=12)
 start_from = ''
 
 def batch_norm_layer(x, train_phase, scope_bn):
-    return batch_norm(x, decay=0.9, center=True, scale=True,
+    return batch_norm(x, decay=0.8, center=True, scale=True,
     updates_collections=None,
     is_training=train_phase,
     reuse=None,

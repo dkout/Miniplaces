@@ -1,0 +1,4 @@
+learning rate = 0.0005
+batch size = 60
+save step 5000
+
