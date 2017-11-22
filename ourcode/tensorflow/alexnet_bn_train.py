@@ -8,7 +8,7 @@ from DataLoaderAug import *
 
 # Dataset Parameters
 
-batch_size = 100
+batch_size = 128
 load_size = 256 
 fine_size = 224
 c = 3
@@ -16,16 +16,16 @@ data_mean = np.asarray([0.45834960097,0.44674252445,0.41352266842])
 
 # Training Parameters
 learning_rate = 0.0005
-dropout = 0.4 # Dropout, probability to keep units
+dropout = 0.6 # Dropout, probability to keep units
 training_iters = 50000
 step_display = 50
 step_save = 10000
 path_save = './alexnet_bn'
-endtime = datetime.datetime.now()+datetime.timedelta(hours=15)
-tart_from = ''
+endtime = datetime.datetime.now()+datetime.timedelta(hours=13)
+start_from = ''
 
 def batch_norm_layer(x, train_phase, scope_bn):
-    return batch_norm(x, decay=0.8, center=True, scale=True,
+    return batch_norm(x, decay=0.9, center=True, scale=True,
     updates_collections=None,
     is_training=train_phase,
     reuse=None,

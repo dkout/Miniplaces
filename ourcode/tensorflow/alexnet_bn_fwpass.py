@@ -8,7 +8,7 @@ from TrainDataLoader import *
 
 #Restore parameters
 
-restore_path = "3rdrun_kout/alexnet_bn-50000"
+restore_path = "4thrun_kout/alexnet_bn-30000"
 # Dataset Parameters
 batch_size = 1
 load_size = 256 
